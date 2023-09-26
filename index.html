@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时</title>
+    <style>
+        #countdown {
+            font-size: 36px;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown"></div>
+
+    <script>
+        // 目标日期
+        const targetDate = new Date("2024-06-07T00:00:00").getTime();
+
+        // 更新倒计时的函数
+        function updateCountdown() {
+            const currentDate = new Date().getTime();
+            const timeLeft = targetDate - currentDate;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
+        }
+
+        // 初始更新
+        updateCountdown();
+
+        // 每隔一秒更新一次
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
